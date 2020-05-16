@@ -22,7 +22,7 @@ const Sitemap = (): JSX.Element => {
       </Helmet>
 
       <animated.main className="main-content" style={props}>
-        <div className="section-dark resume">
+        <div className="section-padded">
           <div className="container">
             <div className="columns is-multiline">
               <div className="column is-12">
@@ -36,9 +36,6 @@ const Sitemap = (): JSX.Element => {
                   </li>
                   <li>
                     <Link to="/gallery">Gallery</Link>
-                  </li>
-                  <li>
-                    <Link to="/about">About</Link>
                   </li>
                   <li>
                     <Link to="/contact">Contact</Link>

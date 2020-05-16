@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSpring } from "react-spring";
 import { Spring } from "react-spring/renderprops-universal.cjs";
 
 export const TopBar = (): JSX.Element => {
@@ -10,8 +9,6 @@ export const TopBar = (): JSX.Element => {
   const menuClick = (): void => {
     toggleMenu(!menuActive);
   };
-
-  const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 1000 } });
 
   return (
     <div className="header-wrapper" id="home">
@@ -59,11 +56,6 @@ export const TopBar = (): JSX.Element => {
                       </Link>
                     </div>
                     <div className="navbar-item">
-                      <Link to="/about" className="navbar-item" onClick={(): void => toggleMenu(false)}>
-                        About
-                      </Link>
-                    </div>
-                    <div className="navbar-item">
                       <Link to="/contact" className="navbar-item" onClick={(): void => toggleMenu(false)}>
                         Contact
                       </Link>
@@ -86,9 +78,6 @@ export const TopBar = (): JSX.Element => {
                   </li>
                   <li>
                     <Link to="/gallery">Gallery</Link>
-                  </li>
-                  <li>
-                    <Link to="/about">About</Link>
                   </li>
                   <li>
                     <Link to="/contact">Contact</Link>
