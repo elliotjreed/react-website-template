@@ -5,6 +5,6 @@ import Routes from "../src/components/Routes";
 
 describe("Routes", (): void => {
   it("should render routes", (): void => {
-    expect(shallow(<Routes />).find(Route)).toHaveLength(6);
+    expect(shallow(<Routes />).find(Route)).toHaveLength(5);
   });
 });
