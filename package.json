@@ -42,21 +42,15 @@
     "workbox-webpack-plugin": "^5.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10",
-    "@babel/core": "^7.10",
-    "@babel/preset-env": "^7.10",
-    "@babel/preset-react": "^7.10",
     "@types/enzyme": "^3.10",
     "@types/enzyme-adapter-react-16": "^1.0",
-    "@types/jest": "^26.0",
+    "@types/jest": "^26.0.3",
     "@types/node": "^14.0",
     "@types/react": "^16.9",
     "@types/react-dom": "^16.9",
     "@typescript-eslint/eslint-plugin": "^3.4",
     "@typescript-eslint/parser": "^3.4",
     "awesome-typescript-loader": "^5.2",
-    "babel-jest": "^26.1",
-    "babel-loader": "^8.1",
     "copy-webpack-plugin": "^6.0",
     "css-loader": "^3.6",
     "enzyme": "^3.11",
@@ -66,7 +60,6 @@
     "eslint-plugin-prettier": "^3.1",
     "eslint-plugin-react": "^7.20",
     "html-webpack-plugin": "^4.3",
-    "image-webpack-loader": "^6.0",
     "jest": "^26.1",
     "jest-enzyme": "^7.1",
     "mini-css-extract-plugin": "^0.9",
@@ -81,7 +74,7 @@
     "stylelint-config-standard": "^20.0",
     "stylelint-scss": "^3.18",
     "terser-webpack-plugin": "^3.0",
-    "ts-jest": "^26.1",
+    "ts-jest": "^26.1.1",
     "typescript": "^3.9",
     "webpack": "^4.43",
     "webpack-cli": "^3.3",
@@ -92,12 +85,10 @@
   "jest": {
     "preset": "ts-jest",
     "transform": {
-      "^.+\\.tsx?$": "ts-jest",
-      "^.+\\.js?$": "babel-jest"
+      "^.+\\.tsx?$": "ts-jest"
     },
     "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/tests/stylesMock.js",
-      "\\.(svg)$": "<rootDir>/tests/svgMock.js"
+      "\\.(css|scss)$": "<rootDir>/tests/stylesMock.ts"
     },
     "testMatch": [
       "<rootDir>/tests/**/*.test.tsx"
@@ -106,7 +97,7 @@
       "<rootDir>/node_modules/jest-enzyme/lib/index.js"
     ],
     "setupFiles": [
-      "<rootDir>/tests/setupJest.js"
+      "<rootDir>/tests/setupJest.ts"
     ],
     "collectCoverage": true,
     "collectCoverageFrom": [
