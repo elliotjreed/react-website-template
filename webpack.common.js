@@ -7,14 +7,9 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /node_modules\/(?!(dom7|ssr-window|swiper|react-id-swiper|react-spring)\/).*/,
-        test: /\.js$/,
-        use: ["babel-loader", "source-map-loader"]
-      },
-      {
         exclude: /\.test.tsx?$/,
         test: /\.tsx?$/,
-        use: ["babel-loader", "awesome-typescript-loader"]
+        use: ["awesome-typescript-loader"]
       },
       {
         test: /\.(sa|sc|c)ss$/,

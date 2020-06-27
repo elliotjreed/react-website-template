@@ -18,7 +18,7 @@ export const TopBar = (): JSX.Element => {
             <Link className="navbar-item" to="/">
               <h1>TITLE</h1>
             </Link>
-            <div
+            <a
               data-target="mobile-nav"
               role="button"
               className={"navbar-burger burger navbar" + (menuActive ? " is-active" : "")}
@@ -29,7 +29,7 @@ export const TopBar = (): JSX.Element => {
               <span />
               <span />
               <span />
-            </div>
+            </a>
           </div>
           {menuActive ? (
             <Spring
@@ -42,7 +42,7 @@ export const TopBar = (): JSX.Element => {
                 marginTop: 0
               }}
             >
-              {(props): any => (
+              {(props): JSX.Element => (
                 <div id="mobile-nav" className={"navbar-menu" + (menuActive ? " is-active" : "")} style={props}>
                   <div className="navbar-end">
                     <div className="navbar-item">
@@ -65,7 +65,7 @@ export const TopBar = (): JSX.Element => {
               )}
             </Spring>
           ) : (
-            false
+            null
           )}
         </nav>
         <div className="hero-foot is-hidden-mobile">

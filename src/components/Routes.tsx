@@ -1,6 +1,5 @@
-import { createBrowserHistory } from "history";
 import * as React from "react";
-import { Route, Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { Spinner } from "./Spinner";
 import { TopBar } from "./TopBar";
@@ -12,11 +11,9 @@ const Contact = React.lazy((): Promise<any> => import(/* webpackChunkName: "cont
 const Sitemap = React.lazy((): Promise<any> => import(/* webpackChunkName: "sitemap" */ "./Sitemap"));
 const PageNotFound = React.lazy((): Promise<any> => import(/* webpackChunkName: "pagenotfound" */ "./PageNotFound"));
 
-const history = createBrowserHistory();
-
 const Routes = (): Router => {
   return (
-    <Router history={history}>
+    <Router>
       <TopBar />
       <React.Suspense fallback={<Spinner />}>
         <Switch>
