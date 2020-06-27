@@ -43,7 +43,7 @@ const Gallery = (): JSX.Element => {
         <div className="section-padded">
           <div className="container">
             <div className="columns is-multiline">
-              <div className="column is-12 about-me">
+              <div className="column is-12">
                 <h2 className="title has-text-centered section-title">Gallery</h2>
               </div>
               <div className="column is-6 is-offset-3">
