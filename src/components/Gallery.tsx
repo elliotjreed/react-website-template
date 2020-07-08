@@ -51,7 +51,7 @@ const Gallery = (): JSX.Element => {
                   <figure className="image">
                     <img
                       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      alt="A photograph of Joe wearing a particularly Scottish-looking jacket"
+                      alt="A photograph"
                       data-src="https://via.placeholder.com/640x480"
                       className="swiper-lazy"
                     />
