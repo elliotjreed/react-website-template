@@ -1,6 +1,7 @@
+const { resolve, join } = require("path");
 const { merge } = require("webpack-merge");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
-const { resolve, join } = require("path");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const glob = require("glob");
 const commonConfig = require("./webpack.common");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -61,7 +62,7 @@ module.exports = merge(commonConfig, {
       description: "DESCRIPTION",
       icons: [
         {
-          sizes: [96, 128, 150, 180, 192, 256, 512, 1024],
+          sizes: [16, 32, 96, 128, 150, 180, 192, 256, 512, 1024],
           src: resolve("src/assets/img/icon.png")
         }
       ],
@@ -71,14 +72,13 @@ module.exports = merge(commonConfig, {
       short_name: "SHORTNAME",
       theme_color: "#fff"
     }),
+    new FaviconsWebpackPlugin("../src/assets/img/icon.png"),
     new MiniCssExtractPlugin({
       chunkFilename: "[id].[hash].css",
       filename: "[name].[hash].css"
     }),
     new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      whitelistPatterns: [/swiper-/],
-      whitelistPatternsChildren: [/swiper-/]
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
     }),
     new CopyPlugin({ patterns: [{ from: "./assets/static", to: "./" }] }),
     new WorkboxPlugin.GenerateSW({

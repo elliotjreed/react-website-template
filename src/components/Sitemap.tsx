@@ -2,7 +2,6 @@ import * as React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { animated, useSpring } from "react-spring";
 import * as ReactGA from "react-ga";
 
 import "./../assets/scss/App.scss";
@@ -12,8 +11,6 @@ const Sitemap = (): JSX.Element => {
     ReactGA.pageview(window.location.pathname + location.search);
   }, []);
 
-  const props = useSpring({ opacity: 1, from: { opacity: 0 } });
-
   return (
     <>
       <Helmet>
@@ -21,7 +18,7 @@ const Sitemap = (): JSX.Element => {
         <meta name="description" content="Sitemap" />
       </Helmet>
 
-      <animated.main className="main-content" style={props}>
+      <main className="main-content">
         <div className="section-padded">
           <div className="container">
             <div className="columns is-multiline">
@@ -35,9 +32,6 @@ const Sitemap = (): JSX.Element => {
                     <Link to="/">Home</Link>
                   </li>
                   <li>
-                    <Link to="/gallery">Gallery</Link>
-                  </li>
-                  <li>
                     <Link to="/contact">Contact</Link>
                   </li>
                 </ul>
@@ -45,7 +39,7 @@ const Sitemap = (): JSX.Element => {
             </div>
           </div>
         </div>
-      </animated.main>
+      </main>
     </>
   );
 };

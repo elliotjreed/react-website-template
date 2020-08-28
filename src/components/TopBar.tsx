@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Spring } from "react-spring/renderprops-universal.cjs";
 
 export const TopBar = (): JSX.Element => {
   const [menuActive, toggleMenu] = useState(false);
@@ -32,41 +31,21 @@ export const TopBar = (): JSX.Element => {
             </a>
           </div>
           {menuActive ? (
-            <Spring
-              from={{
-                opacity: 0,
-                marginTop: 51
-              }}
-              to={{
-                opacity: 1,
-                marginTop: 0
-              }}
-            >
-              {(props): JSX.Element => (
-                <div id="mobile-nav" className={"navbar-menu" + (menuActive ? " is-active" : "")} style={props}>
-                  <div className="navbar-end">
-                    <div className="navbar-item">
-                      <Link to="/" className="navbar-item" onClick={(): void => toggleMenu(false)}>
-                        Home
-                      </Link>
-                    </div>
-                    <div className="navbar-item">
-                      <Link to="/gallery" className="navbar-item" onClick={(): void => toggleMenu(false)}>
-                        Gallery
-                      </Link>
-                    </div>
-                    <div className="navbar-item">
-                      <Link to="/contact" className="navbar-item" onClick={(): void => toggleMenu(false)}>
-                        Contact
-                      </Link>
-                    </div>
-                  </div>
+            <div id="mobile-nav" className={"navbar-menu" + (menuActive ? " is-active" : "")}>
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <Link to="/" className="navbar-item" onClick={(): void => toggleMenu(false)}>
+                    Home
+                  </Link>
                 </div>
-              )}
-            </Spring>
-          ) : (
-            null
-          )}
+                <div className="navbar-item">
+                  <Link to="/contact" className="navbar-item" onClick={(): void => toggleMenu(false)}>
+                    Contact
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ) : null}
         </nav>
         <div className="hero-foot is-hidden-mobile">
           <div className="hero-foot--wrapper">
@@ -75,9 +54,6 @@ export const TopBar = (): JSX.Element => {
                 <ul>
                   <li>
                     <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="/gallery">Gallery</Link>
                   </li>
                   <li>
                     <Link to="/contact">Contact</Link>

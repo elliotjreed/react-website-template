@@ -1,5 +1,6 @@
 import { shallow } from "enzyme";
 import * as React from "react";
+
 import { Spinner } from "../src/components/Spinner";
 
 describe("Loading", (): void => {
