@@ -1,25 +1,18 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Button } from "./Button";
-import * as ReactGA from "react-ga";
 
+import { Button } from "./Button";
 import "./../assets/scss/App.scss";
 
-const renderSuccess: JSX.Element = (
-  <div className="notification is-primary has-text-centered">
-    Thank you for your enquiry. I&apos;ll get back to you shortly!
-  </div>
+const renderSuccess: ReactElement = (
+  <div className="notification is-primary">Thank you for your enquiry. I&apos;ll get back to you shortly!</div>
 );
 
-const Contact = (): JSX.Element => {
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccessful] = useState(false);
-
-  useEffect((): void => {
-    ReactGA.pageview(window.location.pathname + location.search);
-  }, []);
+const Contact = (): ReactElement => {
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccessful] = useState<boolean>(false);
 
   const handleSubmit = (event): void => {
     event.preventDefault();
@@ -80,7 +73,7 @@ const Contact = (): JSX.Element => {
             id="phone"
             className="input"
             type="tel"
-            placeholder="Telephone number &hellip;"
+            placeholder="Telephone number&hellip;"
             name="phone"
             disabled={loading}
           />
@@ -122,15 +115,13 @@ const Contact = (): JSX.Element => {
       </Helmet>
 
       <main className="main-content">
-        <div className="section-padded">
-          <div className="container">
-            <div className="columns is-multiline">
-              <div className="column is-12 has-text-centered">
-                <h2 className="title section-title">Get in Touch</h2>
-                <p>For enquiries, please use the form below.</p>
-              </div>
-              <div className="column is-8 is-offset-2">{success ? renderSuccess : renderForm}</div>
+        <div className="container">
+          <div className="columns is-multiline">
+            <div className="column is-12 has-text-centered">
+              <h2 className="title">Get in Touch</h2>
+              <p>For enquiries, please use the form below.</p>
             </div>
+            <div className="column is-8 is-offset-2">{success ? renderSuccess : renderForm}</div>
           </div>
         </div>
       </main>

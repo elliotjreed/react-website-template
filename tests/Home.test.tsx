@@ -1,13 +1,14 @@
-import { shallow, ShallowWrapper } from "enzyme";
+import { render, screen } from "@testing-library/react";
 import * as React from "react";
 
 import Home from "../src/components/Home";
 
 describe("Home", (): void => {
-  it("should render with main-content CSS class and contain tag line text", (): void => {
-    const shallowWrapper: ShallowWrapper = shallow(<Home />);
+  it("should contain tag line text", (): void => {
+    render(<Home />);
 
-    expect(shallowWrapper.exists(".main-content")).toBe(true);
-    expect(shallowWrapper.text()).toContain("SUBTITLE");
+    const headings: HTMLElement[] = screen.getAllByRole("heading");
+    expect(headings[0]).toContainHTML("TITLE");
+    expect(headings[1]).toContainHTML("SUBTITLE");
   });
 });

@@ -1,14 +1,17 @@
-import { shallow, ShallowWrapper } from "enzyme";
+import { render, screen } from "@testing-library/react";
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import { TopBar } from "../src/components/TopBar";
 
 describe("TopBar", (): void => {
-  it("should render with navbar CSS class and contain links", (): void => {
-    const shallowWrapper: ShallowWrapper = shallow(<TopBar />);
+  it("should contain links", (): void => {
+    render(
+      <Router>
+        <TopBar />
+      </Router>
+    );
 
-    expect(shallowWrapper.exists(".navbar")).toBe(true);
-    expect(shallowWrapper.find(Link)).toHaveLength(3);
+    expect(screen.getAllByRole("link")).toHaveLength(3);
   });
 });

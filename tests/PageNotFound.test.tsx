@@ -1,13 +1,12 @@
-import { shallow, ShallowWrapper } from "enzyme";
+import { render, screen } from "@testing-library/react";
 import * as React from "react";
 
 import PageNotFound from "../src/components/PageNotFound";
 
 describe("PageNotFound", (): void => {
-  it("should render with main-content CSS class and contain Page Not Found text", (): void => {
-    const shallowWrapper: ShallowWrapper = shallow(<PageNotFound />);
+  it("should contain Page Not Found text", (): void => {
+    render(<PageNotFound />);
 
-    expect(shallowWrapper.exists(".main-content")).toBe(true);
-    expect(shallowWrapper.text()).toContain("Page Not Found");
+    expect(screen.getByRole("heading")).toContainHTML("Page Not Found");
   });
 });

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const TopBar = (): JSX.Element => {
-  const [menuActive, toggleMenu] = useState(false);
+export const TopBar = (): ReactElement => {
+  const [menuActive, toggleMenu] = useState<boolean>(false);
 
   const menuClick = (): void => {
     toggleMenu(!menuActive);
@@ -18,7 +18,6 @@ export const TopBar = (): JSX.Element => {
               <h1>TITLE</h1>
             </Link>
             <a
-              data-target="mobile-nav"
               role="button"
               className={"navbar-burger burger navbar" + (menuActive ? " is-active" : "")}
               aria-label="menu"
@@ -31,7 +30,7 @@ export const TopBar = (): JSX.Element => {
             </a>
           </div>
           {menuActive ? (
-            <div id="mobile-nav" className={"navbar-menu" + (menuActive ? " is-active" : "")}>
+            <div className={"navbar-menu" + (menuActive ? " is-active" : "")}>
               <div className="navbar-end">
                 <div className="navbar-item">
                   <Link to="/" className="navbar-item" onClick={(): void => toggleMenu(false)}>
@@ -50,7 +49,7 @@ export const TopBar = (): JSX.Element => {
         <div className="hero-foot is-hidden-mobile">
           <div className="hero-foot--wrapper">
             <div className="columns">
-              <div className="column is-12 hero-menu-desktop has-text-centered">
+              <div className="column is-12 hero-menu-desktop">
                 <ul>
                   <li>
                     <Link to="/">Home</Link>

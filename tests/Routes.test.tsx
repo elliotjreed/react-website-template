@@ -1,11 +1,12 @@
-import { shallow } from "enzyme";
+import { render, screen } from "@testing-library/react";
 import * as React from "react";
-import { Route } from "react-router-dom";
 
 import Routes from "../src/components/Routes";
 
 describe("Routes", (): void => {
   it("should render routes", (): void => {
-    expect(shallow(<Routes />).find(Route)).toHaveLength(4);
+    render(<Routes />);
+
+    expect(screen.getAllByRole("link")).toHaveLength(3);
   });
 });

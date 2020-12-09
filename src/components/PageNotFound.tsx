@@ -1,15 +1,10 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { ReactElement } from "react";
 import { Helmet } from "react-helmet";
-import * as ReactGA from "react-ga";
 
 import "./../assets/scss/App.scss";
 
-const PageNotFound = (): JSX.Element => {
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + location.search);
-  }, []);
-
+const PageNotFound = (): ReactElement => {
   return (
     <>
       <Helmet>
@@ -18,12 +13,10 @@ const PageNotFound = (): JSX.Element => {
       </Helmet>
 
       <main className="main-content">
-        <div className="section-padded">
-          <div className="container">
-            <div className="columns is-multiline">
-              <div className="column is-12">
-                <h2 className="title has-text-centered section-title">Page Not Found</h2>
-              </div>
+        <div className="container">
+          <div className="columns is-multiline">
+            <div className="column is-12 has-text-centered">
+              <h2 className="title">Page Not Found</h2>
             </div>
           </div>
         </div>

@@ -3,6 +3,8 @@ const { CheckerPlugin } = require("awesome-typescript-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  entry: "./index.tsx",
+  target: "web",
   context: resolve(__dirname, "./src"),
   module: {
     rules: [

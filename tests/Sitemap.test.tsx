@@ -1,16 +1,17 @@
-import { shallow, ShallowWrapper } from "enzyme";
+import { render, screen } from "@testing-library/react";
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import Sitemap from "../src/components/Sitemap";
 
 describe("Sitemap", (): void => {
-  it("should render with main-content CSS class and contain sitemap text and links", (): void => {
-    const shallowWrapper: ShallowWrapper = shallow(<Sitemap />);
+  it("should contain sitemap text", (): void => {
+    render(
+      <Router>
+        <Sitemap />
+      </Router>
+    );
 
-    expect(shallowWrapper.exists(".main-content")).toBe(true);
-    expect(shallowWrapper.text()).toContain("Sitemap");
-    expect(shallowWrapper.text()).toContain("Links on this website:");
-    expect(shallowWrapper.find(Link)).toHaveLength(2);
+    expect(screen.getByRole("heading")).toContainHTML("Sitemap");
   });
 });

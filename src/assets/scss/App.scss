@@ -1,10 +1,9 @@
 @charset "utf-8";
 
-$primary: red;
-
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
 @import "~bulma/sass/helpers/visibility";
+@import "~bulma/sass/helpers/typography";
 @import "~bulma/sass/elements/container";
 @import "~bulma/sass/elements/button";
 @import "~bulma/sass/grid/columns.sass";
@@ -29,7 +28,7 @@ $primary: red;
     background: white;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.082);
 
-    @media (max-width: 599px) {
+    @media (max-width: $tablet) {
       display: none;
     }
 
@@ -44,12 +43,12 @@ $primary: red;
         font-size: 1rem;
 
         a {
-          color: #43485c;
+          color: $grey-darker;
 
           :hover {
-            color: #1f2c6c;
+            color: $blue;
             transition: all 0.2s ease-in-out;
-            border-bottom: 2px solid #43485c;
+            border-bottom: 2px solid $black-ter;
           }
         }
 
@@ -59,7 +58,7 @@ $primary: red;
           padding-left: 15px;
 
           .is-active a {
-            border-bottom: 2px solid #43485c;
+            border-bottom: 2px solid $black-ter;
           }
         }
       }
