@@ -9,7 +9,10 @@ const PageNotFound = (): ReactElement => {
     <>
       <Helmet>
         <title>Not Found | TITLE</title>
-        <meta name="description" content="The page you are looking for does not exist." />
+        <meta
+          name="description"
+          content="The page you are looking for does not exist."
+        />
       </Helmet>
 
       <main className="main-content">

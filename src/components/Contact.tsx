@@ -6,7 +6,9 @@ import { Button } from "./Button";
 import "./../assets/scss/App.scss";
 
 const renderSuccess: ReactElement = (
-  <div className="notification is-primary">Thank you for your enquiry. I&apos;ll get back to you shortly!</div>
+  <div className="notification is-primary">
+    Thank you for your enquiry. I&apos;ll get back to you shortly!
+  </div>
 );
 
 const Contact = (): ReactElement => {
@@ -19,7 +21,7 @@ const Contact = (): ReactElement => {
     setLoading(true);
     fetch("https://localhost", {
       body: new URLSearchParams(new FormData(event.target) as URLSearchParams),
-      method: "POST"
+      method: "POST",
     })
       .then((response: Response) => {
         if (!response.ok) {
@@ -36,7 +38,9 @@ const Contact = (): ReactElement => {
         }
         setLoading(true);
       })
-      .catch(() => setError("There was an error sending your email, please try again."));
+      .catch(() =>
+        setError("There was an error sending your email, please try again.")
+      );
   };
 
   const renderForm: JSX.Element = (
@@ -46,7 +50,14 @@ const Contact = (): ReactElement => {
           Name
         </label>
         <div className="control">
-          <input id="name" className="input" type="text" placeholder="Name&hellip;" name="name" disabled={loading} />
+          <input
+            id="name"
+            className="input"
+            type="text"
+            placeholder="Name&hellip;"
+            name="name"
+            disabled={loading}
+          />
         </div>
       </div>
       <div className="field">
@@ -84,21 +95,42 @@ const Contact = (): ReactElement => {
           Message
         </label>
         <div className="control">
-          <textarea id="message" className="textarea" placeholder="Enquiry&hellip;" name="message" readOnly={loading} />
+          <textarea
+            id="message"
+            className="textarea"
+            placeholder="Enquiry&hellip;"
+            name="message"
+            readOnly={loading}
+          />
         </div>
       </div>
       <p className="label">Preferred contact method</p>
       <div className="field">
         <div className="control">
           <label className="radio">
-            <input type="radio" name="preferredMethod" value="email" disabled={loading} defaultChecked /> Email
+            <input
+              type="radio"
+              name="preferredMethod"
+              value="email"
+              disabled={loading}
+              defaultChecked
+            />{" "}
+            Email
           </label>
           <label className="radio">
-            <input type="radio" name="preferredMethod" value="phone" disabled={loading} /> Telephone
+            <input
+              type="radio"
+              name="preferredMethod"
+              value="phone"
+              disabled={loading}
+            />{" "}
+            Telephone
           </label>
         </div>
       </div>
-      {error === "" ? null : <div className="notification is-danger">{error}</div>}
+      {error === "" ? null : (
+        <div className="notification is-danger">{error}</div>
+      )}
       <div className="field">
         <div className="control ">
           <Button text="SEND" disabled={loading} />
@@ -121,7 +153,9 @@ const Contact = (): ReactElement => {
               <h2 className="title">Get in Touch</h2>
               <p>For enquiries, please use the form below.</p>
             </div>
-            <div className="column is-8 is-offset-2">{success ? renderSuccess : renderForm}</div>
+            <div className="column is-8 is-offset-2">
+              {success ? renderSuccess : renderForm}
+            </div>
           </div>
         </div>
       </main>

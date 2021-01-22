@@ -19,7 +19,9 @@ export const TopBar = (): ReactElement => {
             </Link>
             <a
               role="button"
-              className={"navbar-burger burger navbar" + (menuActive ? " is-active" : "")}
+              className={
+                "navbar-burger burger navbar" + (menuActive ? " is-active" : "")
+              }
               aria-label="menu"
               aria-expanded={menuActive ? "true" : "false"}
               onClick={menuClick}
@@ -33,12 +35,20 @@ export const TopBar = (): ReactElement => {
             <div className={"navbar-menu" + (menuActive ? " is-active" : "")}>
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <Link to="/" className="navbar-item" onClick={(): void => toggleMenu(false)}>
+                  <Link
+                    to="/"
+                    className="navbar-item"
+                    onClick={(): void => toggleMenu(false)}
+                  >
                     Home
                   </Link>
                 </div>
                 <div className="navbar-item">
-                  <Link to="/contact" className="navbar-item" onClick={(): void => toggleMenu(false)}>
+                  <Link
+                    to="/contact"
+                    className="navbar-item"
+                    onClick={(): void => toggleMenu(false)}
+                  >
                     Contact
                   </Link>
                 </div>

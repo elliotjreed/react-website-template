@@ -23,7 +23,11 @@ const Home = (): ReactElement => {
           <div className="columns">
             <div className="column is-4 is-offset-4">
               <figure className="image">
-                <img className="is-rounded" src="https://via.placeholder.com/640" alt="" />
+                <img
+                  className="is-rounded"
+                  src="https://via.placeholder.com/640"
+                  alt=""
+                />
               </figure>
             </div>
           </div>

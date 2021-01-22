@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./index.tsx",
-  target: "web",
+  target: "browserslist",
   context: resolve(__dirname, "./src"),
   module: {
     rules: [

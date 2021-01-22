@@ -5,10 +5,19 @@ import { Spinner } from "./Spinner";
 import { TopBar } from "./TopBar";
 import "./../assets/scss/App.scss";
 
-const Home = React.lazy((): Promise<any> => import(/* webpackChunkName: "home" */ "./Home"));
-const Contact = React.lazy((): Promise<any> => import(/* webpackChunkName: "contact" */ "./Contact"));
-const Sitemap = React.lazy((): Promise<any> => import(/* webpackChunkName: "sitemap" */ "./Sitemap"));
-const PageNotFound = React.lazy((): Promise<any> => import(/* webpackChunkName: "pagenotfound" */ "./PageNotFound"));
+const Home = React.lazy(
+  (): Promise<any> => import(/* webpackChunkName: "home" */ "./Home")
+);
+const Contact = React.lazy(
+  (): Promise<any> => import(/* webpackChunkName: "contact" */ "./Contact")
+);
+const Sitemap = React.lazy(
+  (): Promise<any> => import(/* webpackChunkName: "sitemap" */ "./Sitemap")
+);
+const PageNotFound = React.lazy(
+  (): Promise<any> =>
+    import(/* webpackChunkName: "pagenotfound" */ "./PageNotFound")
+);
 
 const Routes = (): Router => {
   return (
