@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { TopBar } from "../src/components/TopBar";
@@ -12,6 +11,6 @@ describe("TopBar", (): void => {
       </Router>
     );
 
-    expect(screen.getAllByRole("link")).toHaveLength(3);
+    expect(screen.getAllByRole("link")).toHaveLength(2);
   });
 });

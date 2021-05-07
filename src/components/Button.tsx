@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ReactElement, useState } from "react";
 
 interface Props {
@@ -9,11 +8,7 @@ interface Props {
 export const Button = (props: Props): ReactElement => {
   const [state, toggle] = useState<boolean>(true);
   return (
-    <button
-      className="button submit-button"
-      onClick={(): void => toggle(!state)}
-      disabled={props.disabled}
-    >
+    <button className="button submit-button" onClick={(): void => toggle(!state)} disabled={props.disabled}>
       {props.text}
     </button>
   );

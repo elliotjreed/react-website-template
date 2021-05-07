@@ -1,18 +1,11 @@
-const { resolve, join } = require("path");
+const { resolve } = require("path");
 const { merge } = require("webpack-merge");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-const glob = require("glob");
 const commonConfig = require("./webpack.common");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-
-const PATHS = {
-  src: join(__dirname, "src")
-};
 
 module.exports = merge(commonConfig, {
   devtool: "source-map",
@@ -22,7 +15,20 @@ module.exports = merge(commonConfig, {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { sourceMap: true, url: false } },
+          {
+            loader: "postcss-loader",
+            options: {
+              sourceMap: true,
+              postcssOptions: {
+                plugins: ["postcss-preset-env"]
+              }
+            }
+          },
+          { loader: "sass-loader", options: { sourceMap: true } }
+        ]
       }
     ]
   },
@@ -51,7 +57,7 @@ module.exports = merge(commonConfig, {
     }
   },
   output: {
-    filename: "js/[name].[hash].min.js",
+    filename: "js/[name].[contenthash].min.js",
     path: resolve(__dirname, "./dist"),
     publicPath: "/"
   },
@@ -62,8 +68,23 @@ module.exports = merge(commonConfig, {
       description: "DESCRIPTION",
       icons: [
         {
-          sizes: [16, 32, 96, 128, 150, 180, 192, 256, 512, 1024],
+          sizes: [72, 96, 128, 144, 192, 256, 384, 512],
           src: resolve("src/assets/img/icon.png")
+        },
+        {
+          sizes: [120, 180, 167, 152, 1024],
+          src: resolve("src/assets/img/icon.png"),
+          ios: true
+        },
+        {
+          size: 1024,
+          src: resolve("src/assets/img/icon.png"),
+          ios: true
+        },
+        {
+          src: resolve("src/assets/img/icon.png"),
+          size: "1024x1024",
+          purpose: "maskable"
         }
       ],
       inject: true,
@@ -72,13 +93,9 @@ module.exports = merge(commonConfig, {
       short_name: "SHORTNAME",
       theme_color: "#fff"
     }),
-    new FaviconsWebpackPlugin("../src/assets/img/icon.png"),
     new MiniCssExtractPlugin({
-      chunkFilename: "[id].[hash].css",
-      filename: "[name].[hash].css"
-    }),
-    new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
+      chunkFilename: "[id].[contenthash].css",
+      filename: "[name].[contenthash].css"
     }),
     new CopyPlugin({ patterns: [{ from: "./assets/static", to: "./" }] }),
     new WorkboxPlugin.GenerateSW({

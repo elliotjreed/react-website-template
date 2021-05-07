@@ -1,14 +1,14 @@
-import * as React from "react";
 import { ReactElement, useState } from "react";
 import { Helmet } from "react-helmet";
 
 import { Button } from "./Button";
-import "./../assets/scss/App.scss";
+
+interface ContactRequestResponse {
+  errors?: string[];
+}
 
 const renderSuccess: ReactElement = (
-  <div className="notification is-primary">
-    Thank you for your enquiry. I&apos;ll get back to you shortly!
-  </div>
+  <div className="notification is-primary">Thank you for your enquiry. I&apos;ll get back to you shortly!</div>
 );
 
 const Contact = (): ReactElement => {
@@ -21,7 +21,7 @@ const Contact = (): ReactElement => {
     setLoading(true);
     fetch("https://localhost", {
       body: new URLSearchParams(new FormData(event.target) as URLSearchParams),
-      method: "POST",
+      method: "POST"
     })
       .then((response: Response) => {
         if (!response.ok) {
@@ -30,17 +30,15 @@ const Contact = (): ReactElement => {
         return response;
       })
       .then((response: Response) => response.json())
-      .then((json: string | boolean) => {
-        if (json === true) {
-          setSuccessful(true);
+      .then((response: ContactRequestResponse) => {
+        if (response.hasOwnProperty("errors")) {
+          setError(response as string);
         } else {
-          setError(json as string);
+          setSuccessful(true);
         }
-        setLoading(true);
+        setLoading(false);
       })
-      .catch(() =>
-        setError("There was an error sending your email, please try again.")
-      );
+      .catch((): void => setError("There was an error sending your email, please try again."));
   };
 
   const renderForm: JSX.Element = (
@@ -50,14 +48,7 @@ const Contact = (): ReactElement => {
           Name
         </label>
         <div className="control">
-          <input
-            id="name"
-            className="input"
-            type="text"
-            placeholder="Name&hellip;"
-            name="name"
-            disabled={loading}
-          />
+          <input id="name" className="input" type="text" placeholder="Name&hellip;" name="name" disabled={loading} />
         </div>
       </div>
       <div className="field">
@@ -95,42 +86,21 @@ const Contact = (): ReactElement => {
           Message
         </label>
         <div className="control">
-          <textarea
-            id="message"
-            className="textarea"
-            placeholder="Enquiry&hellip;"
-            name="message"
-            readOnly={loading}
-          />
+          <textarea id="message" className="textarea" placeholder="Enquiry&hellip;" name="message" readOnly={loading} />
         </div>
       </div>
       <p className="label">Preferred contact method</p>
       <div className="field">
         <div className="control">
           <label className="radio">
-            <input
-              type="radio"
-              name="preferredMethod"
-              value="email"
-              disabled={loading}
-              defaultChecked
-            />{" "}
-            Email
+            <input type="radio" name="preferredMethod" value="email" disabled={loading} defaultChecked /> Email
           </label>
           <label className="radio">
-            <input
-              type="radio"
-              name="preferredMethod"
-              value="phone"
-              disabled={loading}
-            />{" "}
-            Telephone
+            <input type="radio" name="preferredMethod" value="phone" disabled={loading} /> Telephone
           </label>
         </div>
       </div>
-      {error === "" ? null : (
-        <div className="notification is-danger">{error}</div>
-      )}
+      {error === "" ? null : <div className="notification is-danger">{error}</div>}
       <div className="field">
         <div className="control ">
           <Button text="SEND" disabled={loading} />
@@ -146,17 +116,13 @@ const Contact = (): ReactElement => {
         <meta name="description" content="Contact" />
       </Helmet>
 
-      <main className="main-content">
-        <div className="container">
-          <div className="columns is-multiline">
-            <div className="column is-12 has-text-centered">
-              <h2 className="title">Get in Touch</h2>
-              <p>For enquiries, please use the form below.</p>
-            </div>
-            <div className="column is-8 is-offset-2">
-              {success ? renderSuccess : renderForm}
-            </div>
+      <main id="main-content" className="container">
+        <div className="columns is-multiline">
+          <div className="column is-12 has-text-centered">
+            <h2 className="title">Get in Touch</h2>
+            <p>For enquiries, please use the form below.</p>
           </div>
+          <div className="column is-8 is-offset-2">{success ? renderSuccess : renderForm}</div>
         </div>
       </main>
     </>

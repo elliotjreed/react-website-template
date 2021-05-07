@@ -1,5 +1,4 @@
 const { resolve } = require("path");
-const { CheckerPlugin } = require("awesome-typescript-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -9,9 +8,9 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /\.test.tsx?$/,
+        exclude: /node_modules/,
         test: /\.tsx?$/,
-        use: ["awesome-typescript-loader"]
+        use: ["ts-loader"]
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -20,10 +19,9 @@ module.exports = {
     ]
   },
   performance: {
-    hints: false
+    hints: "warning"
   },
   plugins: [
-    new CheckerPlugin(),
     new HtmlWebpackPlugin({
       filename: "./index.html",
       minify: {

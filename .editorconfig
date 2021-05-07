@@ -1,17 +1,18 @@
-# https://editorconfig.org/
 root = true
 
 [*]
-charset = utf-8
-end_of_line = lf
-indent_size = 4
 indent_style = space
+indent_size = 4
 insert_final_newline = true
-max_line_length = 0
 trim_trailing_whitespace = true
+end_of_line = lf
+charset = utf-8
 
-[*.{ts,tsx,json,js,yml,yaml,css,scss,html}]
+[*.{ts,tsx,json,js,yml,yaml,html}]
 indent_size = 2
 
-[*.md]
-trim_trailing_whitespace = false
+[*.{ts,tsx,js}]
+max_line_length = 120
+
+[*.json]
+insert_final_newline = false
