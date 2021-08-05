@@ -29,6 +29,10 @@ module.exports = merge(commonConfig, {
           },
           { loader: "sass-loader", options: { sourceMap: true } }
         ]
+      },
+      {
+        test: /\.(png|jpg|gif|ttf|eot|woff|woff2|svg)?(\?[a-z0-9#=&.]+)?$/,
+        type: "asset/inline"
       }
     ]
   },
